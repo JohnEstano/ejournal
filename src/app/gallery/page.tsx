@@ -11,7 +11,6 @@ import { House, Ampersand, Signature, Sun } from 'lucide-react';
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 import { TextAnimate } from "@/components/magicui/text-animate";
-import { DockNav } from "@/components/dock-nav";
 import {
   Tooltip,
   TooltipContent,
@@ -19,6 +18,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ConfettiButton } from "@/components/magicui/confetti";
+import { DockNav } from "@/components/dock-nav";
 
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -37,15 +37,14 @@ export default function Home() {
 
       <main className="mx-auto  font-serif max-w-3xl flex flex-col items-center mt-30 gap-8">
         <div className="text-center">
-          <ConfettiButton />
+       
           <h1
             className={cn(
               "scroll-m-20 font-serif  tracking-tight",
               "text-2xl sm:text-4xl lg:text-5xl mt-4"
             )}
           >
-            Hey, I am <span className="text-slate-700">John Estaño.</span>
-            <br></br>Welcome to my <span className="text-slate-700">E-journal.</span>
+        Gallery
           </h1>
           <TextAnimate
             animation="blurIn"
@@ -86,7 +85,7 @@ export default function Home() {
 
 
       <div className="fixed bottom-0 left-0 w-full z-50 bg-transparent backdrop-blur-sm py-4">
-        <DockNav />
+          <DockNav />
       </div>
     </div>
   );
