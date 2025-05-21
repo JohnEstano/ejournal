@@ -55,7 +55,7 @@ export default function Home() {
 
 
           <div className="mt-4 text-justify leading-relaxed pt-4">
-            <p className="text-slate-700">This page is part of the partial fulfillment of the requirements for the course <span className="text-zinc-950 italic"> Seminars, Workshops, & Tours. </span>
+            <p className="text-slate-700 dark:text-zinc-100">This page is part of the partial fulfillment of the requirements for the course <span className="text-zinc-950 italic"> Seminars, Workshops, & Tours. </span>
               The course offers students hands on learning through seminars, interactive workshops, and educational tours, providing us students with real-world experiences and industry exposure.
               Here, I gathered all my insights and reflections I gained from attending each activity.
             </p>
@@ -75,7 +75,7 @@ export default function Home() {
 
           <div className="mt-4 text-justify leading-relaxed pt-4">
 
-            <p className="text-slate-700">This page is part of the partial fulfillment of the requirements for the course Seminars, Workshops, & Tours.
+            <p className="text-slate-700 dark:text-zinc-100">This page is part of the partial fulfillment of the requirements for the course Seminars, Workshops, & Tours.
               The course offers students hands on learning through seminars, interactive workshops, and educational tours, providing us students with real-world insights and industry exposure.
               Here, I gathered all my insights and reflections I gained from attending each activity.
             </p>
