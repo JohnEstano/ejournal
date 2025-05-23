@@ -9,7 +9,7 @@ import {
   animate,
   useVelocity,
   useAnimationControls,
-} from "motion/react";
+} from "framer-motion";
 
 export const DraggableCardBody = ({
   className,
@@ -29,7 +29,6 @@ export const DraggableCardBody = ({
     bottom: 0,
   });
 
-  // physics biatch
   const velocityX = useVelocity(mouseX);
   const velocityY = useVelocity(mouseY);
 
@@ -59,27 +58,24 @@ export const DraggableCardBody = ({
   );
 
   useEffect(() => {
-    // Update constraints when component mounts or window resizes
     const updateConstraints = () => {
-      if (typeof window !== "undefined") {
+      if (cardRef.current && typeof window !== "undefined") {
+        const cardRect = cardRef.current.getBoundingClientRect();
+        const maxX = (window.innerWidth - cardRect.width) / 2;
+        const maxY = (window.innerHeight - cardRect.height) / 2;
+        
         setConstraints({
-          top: -window.innerHeight / 2,
-          left: -window.innerWidth / 2,
-          right: window.innerWidth / 2,
-          bottom: window.innerHeight / 2,
+          top: -maxY,
+          left: -maxX,
+          right: maxX,
+          bottom: maxY,
         });
       }
     };
 
     updateConstraints();
-
-    // Add resize listener
     window.addEventListener("resize", updateConstraints);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("resize", updateConstraints);
-    };
+    return () => window.removeEventListener("resize", updateConstraints);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -104,6 +100,53 @@ export const DraggableCardBody = ({
     mouseY.set(0);
   };
 
+  const handleDragEnd = (event: any, info: any) => {
+    document.body.style.cursor = "default";
+    controls.start({
+      rotateX: 0,
+      rotateY: 0,
+      transition: {
+        type: "spring",
+        ...springConfig,
+      },
+    });
+
+    if (!cardRef.current) return;
+
+    const cardRect = cardRef.current.getBoundingClientRect();
+    const maxX = (window.innerWidth - cardRect.width) / 2;
+    const maxY = (window.innerHeight - cardRect.height) / 2;
+
+    const currentVelocityX = velocityX.get();
+    const currentVelocityY = velocityY.get();
+
+    const newX = info.point.x + currentVelocityX * 0.3;
+    const newY = info.point.y + currentVelocityY * 0.3;
+
+    const clampedX = Math.max(-maxX, Math.min(newX, maxX));
+    const clampedY = Math.max(-maxY, Math.min(newY, maxY));
+
+    animate(info.point.x, clampedX, {
+      duration: 0.8,
+      ease: [0.2, 0, 0, 1],
+      bounce: 0.4,
+      type: "spring",
+      stiffness: 50,
+      damping: 15,
+      mass: 0.8,
+    });
+
+    animate(info.point.y, clampedY, {
+      duration: 0.8,
+      ease: [0.2, 0, 0, 1],
+      bounce: 0.4,
+      type: "spring",
+      stiffness: 50,
+      damping: 15,
+      mass: 0.8,
+    });
+  };
+
   return (
     <motion.div
       ref={cardRef}
@@ -112,46 +155,7 @@ export const DraggableCardBody = ({
       onDragStart={() => {
         document.body.style.cursor = "grabbing";
       }}
-      onDragEnd={(event, info) => {
-        document.body.style.cursor = "default";
-
-        controls.start({
-          rotateX: 0,
-          rotateY: 0,
-          transition: {
-            type: "spring",
-            ...springConfig,
-          },
-        });
-        const currentVelocityX = velocityX.get();
-        const currentVelocityY = velocityY.get();
-
-        const velocityMagnitude = Math.sqrt(
-          currentVelocityX * currentVelocityX +
-            currentVelocityY * currentVelocityY,
-        );
-        const bounce = Math.min(0.8, velocityMagnitude / 1000);
-
-        animate(info.point.x, info.point.x + currentVelocityX * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
-
-        animate(info.point.y, info.point.y + currentVelocityY * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
-      }}
+      onDragEnd={handleDragEnd}
       style={{
         rotateX,
         rotateY,
@@ -163,8 +167,8 @@ export const DraggableCardBody = ({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative min-h-90 w-80 overflow-hidden rounded-md bg-neutral-100 p-6 shadow-2xl transform-3d dark:bg-neutral-900",
-        className,
+        "relative h-64 w-64 overflow-hidden rounded-2xl bg-transparent shadow-2xl transform-3d",
+        className
       )}
     >
       {children}

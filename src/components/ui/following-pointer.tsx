@@ -45,7 +45,7 @@ export const FollowerPointerCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       style={{
-        cursor: "default",
+        cursor: "pointer",
       }}
       ref={ref}
       className={cn("relative", className)}
@@ -110,7 +110,7 @@ export const FollowPointer = ({
           opacity: 0,
         }}
         className={
-          "min-w-max rounded-full bg-neutral-200 px-2 py-2 text-xs whitespace-nowrap text-white"
+          "min-w-max rounded-full bg-neutral-200 px-2 py-2 text-xs whitespace-nowrap text-white text-m"
         }
       >
         {title || `Explore`}

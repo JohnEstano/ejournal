@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
 import { DraggableCardContainer, DraggableCardBody } from '@/components/ui/DragCards';
 import React from "react";
 import { Inter, Playfair_Display } from 'next/font/google';
@@ -31,7 +33,7 @@ export default function Home() {
 
     <div
       className={cn(
-        "relative min-h-screen px-4 sm:px-6 md:px-20 pb-[88px]",
+        "relative min-h-screen overflow-hidden px-4 sm:px-6 md:px-20 pb-[88px]",
         inter.variable,
         playfair.variable,
         "font-sans"
@@ -42,26 +44,25 @@ export default function Home() {
 
 
         <div className="text-center">
-          <FollowerPointerCard>
 
 
-            <ConfettiButton />
-            <h1
-              className={cn(
-                "scroll-m-20 font-serif  tracking-tight",
-                "text-2xl sm:text-4xl lg:text-5xl mt-4"
-              )}
-            >
-              Hey, I am <span className="text-slate-700 dark:text-emerald-600">John Estaño.</span>
-              <br></br>Welcome to my <span className="text-slate-700 dark:text-emerald-600">E-journal.</span>
-            </h1>
-            <TextAnimate
-              animation="blurIn"
-              as="h5"
-              className="mt-10 text-base sm:text-base">
-              "The best way to predict the future is to invent it." - Alan Kay
-            </TextAnimate>
-          </FollowerPointerCard>
+          <ConfettiButton />
+          <h1
+            className={cn(
+              "scroll-m-20 font-serif  tracking-tight",
+              "text-2xl sm:text-4xl lg:text-5xl mt-4"
+            )}
+          >
+            Hey, I am <span className="text-slate-700 dark:text-emerald-600">John Estaño.</span>
+            <br></br>Welcome to my <span className="text-slate-700 dark:text-emerald-600">E-journal.</span>
+          </h1>
+          <TextAnimate
+            animation="blurIn"
+            as="h5"
+            className="mt-10 text-base sm:text-base">
+            "The best way to predict the future is to invent it." - Alan Kay
+          </TextAnimate>
+
 
           <div className="mt-4 text-justify leading-relaxed pt-4">
             <p className="text-slate-700 dark:text-zinc-100">This page is part of the partial fulfillment of the requirements for the course <span className="text-zinc-950 italic dark:text-zinc-100"> Seminars, Workshops, & Tours. </span>
@@ -83,41 +84,48 @@ export default function Home() {
 
 
           <div className="mt-5 text-justify leading-relaxed pt-4">
+            <DraggableCardContainer className="relative w-[400px] h-[400px] mx-auto">
 
-
-
-            <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center ">
-              <DraggableCardBody>
-                <img
-                  src="https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=3634&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Some mountains"
-                  className="pointer-events-none relative z-10 h-80 w-full object-cover"
-                />
-                <p className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
-
-                </p>
-              </DraggableCardBody>
-              <DraggableCardBody>
-
+              <DraggableCardBody className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <Image
                   src="/images/seminar.png"
-                  alt="Profile Picture"
-                  width={500}
-                  height={500}
+                  alt="Seminar"
+                  width={256}
+                  height={256}
                   draggable={false}
-                  className="  h-80 w-100 cursor-pointer transition-transform duration-300"
+                  className="h-full w-full object-cover shadow-lg rounded-lg"
                 />
               </DraggableCardBody>
-              <DraggableCardBody>
-                <h2 className="text-xl font-semibold">3</h2>
 
+
+              <DraggableCardBody className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 translate-x-3 translate-y-3">
+                <Image
+                  src="/images/seminar.png"
+                  alt="Seminar"
+                  width={256}
+                  height={256}
+                  draggable={false}
+                  className="h-full w-full object-cover shadow-lg rounded-lg"
+                />
               </DraggableCardBody>
 
+
+              <DraggableCardBody className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 translate-x-6 translate-y-6">
+                <Image
+                  src="/images/seminar.png"
+                  alt="Seminar"
+                  width={256}
+                  height={256}
+                  draggable={false}
+                  className="h-full w-full object-cover shadow-lg rounded-lg"
+                />
+              </DraggableCardBody>
             </DraggableCardContainer>
 
-            <Link href="/gallery" className="m-0">See more</Link>
+            <Link href="/gallery" className="mt-4 block text-center hover:underline">
+              See more
+            </Link>
           </div>
-
 
 
           <div className="mt-4 text-justify leading-relaxed pt-4">

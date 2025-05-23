@@ -37,27 +37,22 @@ export default function Home() {
 
       <main className="mx-auto  font-serif max-w-3xl flex flex-col items-center mt-30 gap-8">
         <div className="text-center">
-       
+
           <h1
             className={cn(
               "scroll-m-20 font-serif  tracking-tight",
               "text-2xl sm:text-4xl lg:text-5xl mt-4"
             )}
           >
-         About
+            About
           </h1>
-          <TextAnimate
-            animation="blurIn"
-            as="h5"
-            className="mt-10 text-base sm:text-base">
-            "The best way to predict the future is to invent it." - Alan Kay
-          </TextAnimate>
+
 
 
           <div className="mt-4 text-justify leading-relaxed pt-4">
-            <p className="text-slate-700 dark:text-zinc-100">This page is part of the partial fulfillment of the requirements for the course <span className="text-zinc-950 italic"> Seminars, Workshops, & Tours. </span>
-              The course offers students hands on learning through seminars, interactive workshops, and educational tours, providing us students with real-world experiences and industry exposure.
-              Here, I gathered all my insights and reflections I gained from attending each activity.
+            <p className="text-slate-700 dark:text-zinc-100">
+              Hello, I am John Estano. I am a 2nd year Computer Science student at the University of the Immaculate Conception.
+
             </p>
 
 
@@ -85,7 +80,7 @@ export default function Home() {
 
 
       <div className="fixed bottom-0 left-0 w-full z-50 bg-transparent backdrop-blur-sm py-4">
-          <DockNav />
+        <DockNav />
       </div>
     </div>
   );
