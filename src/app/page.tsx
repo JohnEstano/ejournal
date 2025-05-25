@@ -9,6 +9,7 @@ import React from "react";
 import { Inter, Playfair_Display } from 'next/font/google';
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { Separator } from "@/components/ui/separator";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { cn } from "@/lib/utils";
 import { House, Ampersand, Signature, Sun } from 'lucide-react';
 import { Dock, DockIcon } from "@/components/magicui/dock";
@@ -16,12 +17,14 @@ import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pa
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { DockNav } from "@/components/dock-nav";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import HTMLFlipBook from 'react-pageflip';
 import { ConfettiButton } from "@/components/magicui/confetti";
 
 
@@ -47,6 +50,7 @@ export default function Home() {
 
 
           <ConfettiButton />
+
           <h1
             className={cn(
               "scroll-m-20 font-serif  tracking-tight",
@@ -80,56 +84,19 @@ export default function Home() {
 
           <div>
 
+
+
           </div>
 
 
-          <div className="mt-5 text-justify leading-relaxed pt-4">
-            <DraggableCardContainer className="relative w-[400px] h-[400px] mx-auto">
 
-              <DraggableCardBody className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <Image
-                  src="/images/seminar.png"
-                  alt="Seminar"
-                  width={256}
-                  height={256}
-                  draggable={false}
-                  className="h-full w-full object-cover shadow-lg rounded-lg"
-                />
-              </DraggableCardBody>
-
-
-              <DraggableCardBody className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 translate-x-3 translate-y-3">
-                <Image
-                  src="/images/seminar.png"
-                  alt="Seminar"
-                  width={256}
-                  height={256}
-                  draggable={false}
-                  className="h-full w-full object-cover shadow-lg rounded-lg"
-                />
-              </DraggableCardBody>
-
-
-              <DraggableCardBody className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 translate-x-6 translate-y-6">
-                <Image
-                  src="/images/seminar.png"
-                  alt="Seminar"
-                  width={256}
-                  height={256}
-                  draggable={false}
-                  className="h-full w-full object-cover shadow-lg rounded-lg"
-                />
-              </DraggableCardBody>
-            </DraggableCardContainer>
-
-            <Link href="/gallery" className="mt-4 block text-center hover:underline">
-              See more
-            </Link>
-          </div>
+        
 
 
           <div className="mt-4 text-justify leading-relaxed pt-4">
-
+            <Link href="/gallery" className="mt-4 block text-center hover:underline">
+              See more
+            </Link>
             <p className="text-slate-700 dark:text-zinc-100">This page is part of the partial fulfillment of the requirements for the course Seminars, Workshops, & Tours.
               The course offers students hands on learning through seminars, interactive workshops, and educational tours, providing us students with real-world insights and industry exposure.
               Here, I gathered all my insights and reflections I gained from attending each activity.
